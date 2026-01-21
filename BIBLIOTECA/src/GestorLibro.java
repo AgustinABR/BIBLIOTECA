@@ -1,5 +1,3 @@
-package biblioteca;
-
 import java.util.Arrays;
 
 public class GestorLibro {
@@ -23,9 +21,19 @@ public class GestorLibro {
         return respuesta;
     }
 
-    public int buscarLibroTitulo(String titulo) {
+    public Libro buscarLibroTitulo(String titulo) {
         for (int i = 0; i < cantidad; i++) {
             if (libros[i].getTitulo().equals(titulo)) {
+                return libros[i];
+            }
+        }
+
+        return null;
+    }
+
+    private int buscarLibroISBN(int isbn) {
+        for (int i = 0; i < cantidad; i++) {
+            if (libros[i].getIsbn() == isbn) {
                 return i;
             }
         }
@@ -57,8 +65,8 @@ public class GestorLibro {
         return Arrays.copyOf(librosCategorias, j);
     }
 
-    public boolean eliminarLibro(String titulo) {
-        int posicion = buscarLibroTitulo(titulo);
+    public boolean eliminarLibro(int isbn) {
+        int posicion = buscarLibroISBN(isbn);
         boolean respuesta = false;
 
         if (posicion != -1) {
