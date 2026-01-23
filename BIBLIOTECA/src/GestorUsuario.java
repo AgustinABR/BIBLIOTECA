@@ -1,3 +1,28 @@
 public class GestorUsuario {
-    
+    private Usuario[] usuarios;
+    private static final int MAX = 100;
+    private int cantidad;
+
+
+    public GestorUsuario() {
+        usuarios = new Usuario[MAX];
+        cantidad = 0;
+    }
+
+    public boolean registrarUsuario(Usuario usuario) {
+        boolean respuesta = false; 
+        if (cantidad < MAX) {
+            usuarios[cantidad] = usuario;
+            cantidad++;
+            respuesta = true;
+        }
+        
+        return respuesta;
+    }
+
+    public void consultarUsuario() {
+        for (Usuario usuario : usuarios) {
+            
+        }
+    }
 }
