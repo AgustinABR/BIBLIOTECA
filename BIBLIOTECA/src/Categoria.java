@@ -1,0 +1,3 @@
+public enum Categoria {
+    FANTASIA, ACCION, TERROR, CIENCIAFICCION, COMEDIA;
+}
