@@ -20,16 +20,19 @@ public class GestorPrestamo {
     }
 
     public void devolverLibro(int idPrestamo, String fechaDevolucion) {
-        for (int i = 0; i < cantidad; i++) {
+        boolean salir = false;
+        for (int i = 0; i < cantidad && !salir; i++) {
             if (prestamos[i].getIdPrestamo() == idPrestamo && prestamos[i].isActivo()) {
                 prestamos[i].devolver(fechaDevolucion);
                 prestamos[i].getLibro().devolver();
                 prestamos[i].getUsuario().decrementarPrestamos();
                 System.out.println("Libro devuelto correctamente.");
-                return;
+                salir = true;
             }
         }
-        System.out.println("Préstamo no encontrado o ya devuelto.");
+        if (!salir) {
+            System.out.println("Préstamo no encontrado o ya devuelto.");
+        }
     }
 
     public void mostrarPrestamosActivos(Usuario usuario) {
