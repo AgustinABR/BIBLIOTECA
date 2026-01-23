@@ -1,18 +1,26 @@
 public class GestorPrestamo {
     private Prestamo[] prestamos;
-    private int totalPrestamos;
+    private static final int MAX = 100;
+    private int cantidad;
 
     public GestorPrestamo(int maxPrestamos) {
         prestamos = new Prestamo[maxPrestamos];
-        totalPrestamos = 0;
+        cantidad = 0;
     }
 
-    public void registrarPrestamo(Prestamo prestamo) {
-        prestamos[totalPrestamos++] = prestamo;
+    public boolean registrarPrestamo(Prestamo prestamo) {
+        boolean respuesta = false; 
+        if (cantidad < MAX) {
+            prestamos[cantidad] = prestamo;
+            cantidad++;
+            respuesta = true;
+        }
+        
+        return respuesta;
     }
 
     public void devolverLibro(int idPrestamo, String fechaDevolucion) {
-        for (int i = 0; i < totalPrestamos; i++) {
+        for (int i = 0; i < cantidad; i++) {
             if (prestamos[i].getIdPrestamo() == idPrestamo && prestamos[i].isActivo()) {
                 prestamos[i].devolver(fechaDevolucion);
                 prestamos[i].getLibro().devolver();
@@ -30,7 +38,7 @@ public class GestorPrestamo {
             return;
         }
 
-        for (int i = 0; i < totalPrestamos; i++) {
+        for (int i = 0; i < cantidad; i++) {
             if (prestamos[i].isActivo()) {
                 System.out.println(prestamos[i]);
             }
