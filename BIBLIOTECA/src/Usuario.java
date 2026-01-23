@@ -33,8 +33,14 @@ public class Usuario {
         this.password = password;
     }
 
+    @Override
+    public String toString() {
+        return "Usuario = " + esAdmin 
+        + ", El nombre es " + nombre ;
+    }
 
 
+    
 
 
 
