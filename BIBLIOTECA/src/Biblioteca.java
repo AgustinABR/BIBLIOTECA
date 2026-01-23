@@ -15,18 +15,19 @@ public class Biblioteca {
     public static final String NEGRITA = "\u001B[1m";
 
     public static Usuario[] usuarios = {
-        new Usuario("Pepe", "12345", false),
-        new Usuario("María", "54321", true)
+            new Usuario("pepe", "12345", false),
+            new Usuario("maria", "54321", true)
     };
 
     public static void main(String[] args) {
-        Usuario usuario = login(); 
+        Usuario usuario = login();
 
         if (usuario != null) {
             if (usuario.isAdmin()) {
                 menuAdmin();
             } else {
                 System.out.println(VERDE + "Bienvenido usuario: " + usuario.getNombre() + RESET);
+                menuUsuario(usuario);
             }
         } else {
             System.out.println(ROJO + "No se pudo iniciar sesión." + RESET);
@@ -35,28 +36,29 @@ public class Biblioteca {
 
     public static Usuario login() {
         System.out.println(AZUL + NEGRITA +
-                "\n________________________________\n" +
+                "\n______________________________\n" +
                 "|      LOGIN BIBLIOTECA      |\n" +
                 "|____________________________|" + RESET);
 
-        System.out.print(AZUL + "|" + VERDE + " Usuario:           " + AZUL + "|" + RESET + " ");
+        System.out.print(AZUL+NEGRITA + "|" + VERDE + " Usuario:                   " + AZUL + NEGRITA + "|" + RESET + " ");
         String nombre = sc.nextLine();
 
-        System.out.print(AZUL + "|" + VERDE + " Contraseña:        " + AZUL + "|" + RESET + " ");
+        System.out.print(AZUL+ NEGRITA + "|" + VERDE + " Contraseña:                " + AZUL + NEGRITA+ "|" + RESET + " ");
         String pass = sc.nextLine();
+         System.out.println(AZUL + NEGRITA + "|____________________________|" + RESET);
 
         for (Usuario u : usuarios) {
             if (u.getNombre().equals(nombre) && u.getContrasena().equals(pass)) {
                 System.out.println(VERDE + "Login correcto! Bienvenido " + u.getNombre() + RESET);
-                return u;
+                return u; 
             }
         }
 
         System.out.println(ROJO + "Login incorrecto" + RESET);
         return null;
-    }
+     }
 
-    public static void menuAdmin() {
+    public static void menuAdmin() { 
         System.out.println(AZUL + NEGRITA +
                 "\n________________________________\n" +
                 "|      MENÚ ADMINISTRADOR      |\n" +
@@ -66,7 +68,7 @@ public class Biblioteca {
         System.out.println(AZUL + "|" + CYAN + " 2. Mostrar libros            " + AZUL + "|" + RESET);
         System.out.println(AZUL + "|" + AMARILLO + " 3. Registrar usuario         " + AZUL + "|" + RESET);
         System.out.println(AZUL + "|" + ROJO + " 0. Salir                     " + AZUL + "|" + RESET);
-
+        System.out.println(AZUL + "|______________________________|" + RESET);
         System.out.print(BLANCO + "\nSeleccione una opción: " + RESET);
         int opci = Integer.parseInt(sc.nextLine());
 
@@ -95,4 +97,20 @@ public class Biblioteca {
                 System.out.println(ROJO + "Opción no válida" + RESET);
         }
     }
+
+    static void menuUsuario(Usuario u) {
+        System.out.println(MORADO + NEGRITA +
+                "\n________________________________\n" +
+                "|        MENÚ USUARIO          |\n" +
+                "|______________________________|" + RESET);
+
+        System.out.println(MORADO + "|" + CYAN + " 1.  Mostrar libros           " + MORADO + "|" + RESET);
+        System.out.println(MORADO + "|" + VERDE + " 2.  Prestar libro            " + MORADO + "|" + RESET);
+        System.out.println(MORADO + "|" + AMARILLO + " 3.  Devolver libro           " + MORADO + "|" + RESET);
+        System.out.println(MORADO + "|" + ROJO + " 0.  Salir                    " + MORADO + "|" + RESET);
+        System.out.println(MORADO + "|______________________________|" + RESET);
+        System.out.print(BLANCO + "\nSeleccione una opción: " + RESET);
+        int op = Integer.parseInt(sc.nextLine());
+    }
+
 }
