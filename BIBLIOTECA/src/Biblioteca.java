@@ -70,7 +70,9 @@ public class Biblioteca {
         System.out.println(AZUL + "|" + MORADO + " 3. Mostrar libros            " + AZUL + "|" + RESET);
         System.out.println(AZUL + "|" + AMARILLO + " 4. Registrar usuario         " + AZUL + "|" + RESET);
         System.out.println(AZUL + "|" + VERDE + " 5. C.Info usuarios           " + AZUL + "|" + RESET);
-        System.out.println(AZUL + "|" + CYAN + " 6. Libros prestados           " + AZUL + "|" + RESET);
+        System.out.println(AZUL + "|" + CYAN + " 6. Libros prestados          " + AZUL + "|" + RESET);
+        System.out.println(AZUL + "|" + MORADO + " 7. Prestar libros            " + AZUL + "|" + RESET);
+        System.out.println(AZUL + "|" + AMARILLO + " 8. Devolver libros           " + AZUL + "|" + RESET);
         System.out.println(AZUL + "|" + ROJO + " 0. Salir                     " + AZUL + "|" + RESET);
         System.out.println(AZUL + "|______________________________|" + RESET);
         System.out.print(BLANCO + "\nSeleccione una opción: " + RESET);
