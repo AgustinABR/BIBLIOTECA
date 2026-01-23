@@ -1,28 +1,62 @@
 import java.util.Scanner;
 
-import biblioteca.GestorLibro;
-import biblioteca.Usuario;
-
 public class Biblioteca {
 
-    static Scanner sc = new Scanner(System.in);
+    public static Scanner sc = new Scanner(System.in);
 
-    static final String RESET = "\u001B[0m";
-    static final String ROJO = "\u001B[31m";
-    static final String VERDE = "\u001B[32m";
-    static final String AMARILLO = "\u001B[33m";
-    static final String AZUL = "\u001B[34m";
-    static final String MORADO = "\u001B[35m";
-    static final String CYAN = "\u001B[36m";
-    static final String BLANCO = "\u001B[37m";
-    static final String NEGRITA = "\u001B[1m";
+    public static final String RESET = "\u001B[0m";
+    public static final String ROJO = "\u001B[31m";
+    public static final String VERDE = "\u001B[32m";
+    public static final String AMARILLO = "\u001B[33m";
+    public static final String AZUL = "\u001B[34m";
+    public static final String MORADO = "\u001B[35m";
+    public static final String CYAN = "\u001B[36m";
+    public static final String BLANCO = "\u001B[37m";
+    public static final String NEGRITA = "\u001B[1m";
+
+    public static Usuario[] usuarios = {
+        new Usuario("Pepe", "12345", false),
+        new Usuario("María", "54321", true)
+    };
 
     public static void main(String[] args) {
-        menuAdmin();
+        Usuario usuario = login(); 
+
+        if (usuario != null) {
+            if (usuario.isAdmin()) {
+                menuAdmin();
+            } else {
+                System.out.println(VERDE + "Bienvenido usuario: " + usuario.getNombre() + RESET);
+            }
+        } else {
+            System.out.println(ROJO + "No se pudo iniciar sesión." + RESET);
+        }
     }
 
-    static void menuAdmin() {
+    public static Usuario login() {
+        System.out.println(AZUL + NEGRITA +
+                "\n________________________________\n" +
+                "|      LOGIN BIBLIOTECA      |\n" +
+                "|____________________________|" + RESET);
 
+        System.out.print(AZUL + "|" + VERDE + " Usuario:           " + AZUL + "|" + RESET + " ");
+        String nombre = sc.nextLine();
+
+        System.out.print(AZUL + "|" + VERDE + " Contraseña:        " + AZUL + "|" + RESET + " ");
+        String pass = sc.nextLine();
+
+        for (Usuario u : usuarios) {
+            if (u.getNombre().equals(nombre) && u.getContrasena().equals(pass)) {
+                System.out.println(VERDE + "Login correcto! Bienvenido " + u.getNombre() + RESET);
+                return u;
+            }
+        }
+
+        System.out.println(ROJO + "Login incorrecto" + RESET);
+        return null;
+    }
+
+    public static void menuAdmin() {
         System.out.println(AZUL + NEGRITA +
                 "\n________________________________\n" +
                 "|      MENÚ ADMINISTRADOR      |\n" +
@@ -32,27 +66,33 @@ public class Biblioteca {
         System.out.println(AZUL + "|" + CYAN + " 2. Mostrar libros            " + AZUL + "|" + RESET);
         System.out.println(AZUL + "|" + AMARILLO + " 3. Registrar usuario         " + AZUL + "|" + RESET);
         System.out.println(AZUL + "|" + ROJO + " 0. Salir                     " + AZUL + "|" + RESET);
-        System.out.println(AZUL + "|______________________________|" + RESET);
-        System.out.print(BLANCO + "\nSeleccione una opción: " + RESET);
-        
-          if (opci == 1) {
-          System.out.print("Título: ");
-          String tit = sc.nextLine();
-          System.out.print("Autor: ");
-          String aut = sc.nextLine();
-          GestorLibro.agregarLibro(tit, aut);
-          
-          } else if (opci == 2) {
-          GestorLibro.mostrarLibros();
-          
-          } else if (opci == 3) {
-          System.out.print("Usuario: ");
-          String usu = sc.nextLine();
-          System.out.print("Contraseña: ");
-          String contra = sc.nextLine();
-          
-          }
-         
-    }
 
+        System.out.print(BLANCO + "\nSeleccione una opción: " + RESET);
+        int opci = Integer.parseInt(sc.nextLine());
+
+        switch (opci) {
+            case 1:
+                System.out.print("Título: ");
+                String tit = sc.nextLine();
+                System.out.print("Autor: ");
+                String aut = sc.nextLine();
+                System.out.println("Libro agregado: " + tit + " - " + aut);
+                break;
+            case 2:
+                System.out.println("Aquí se mostrarían los libros.");
+                break;
+            case 3:
+                System.out.print("Usuario: ");
+                String usu = sc.nextLine();
+                System.out.print("Contraseña: ");
+                String contra = sc.nextLine();
+                System.out.println("Usuario registrado: " + usu);
+                break;
+            case 0:
+                System.out.println("Saliendo del menú admin...");
+                break;
+            default:
+                System.out.println(ROJO + "Opción no válida" + RESET);
+        }
+    }
 }
