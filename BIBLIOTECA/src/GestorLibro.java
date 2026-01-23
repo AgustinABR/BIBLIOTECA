@@ -53,7 +53,7 @@ public class GestorLibro {
         return Arrays.copyOf(librosAutores, j);
     }
 
-    public Libro[] buscarLibroCategoria(String categoria) {
+    public Libro[] buscarLibroCategoria(Categoria categoria) {
         Libro[] librosCategorias = new Libro[MAX];
         int j = 0;
         for (int i = 0; i < cantidad; i++) {
