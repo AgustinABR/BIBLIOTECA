@@ -21,8 +21,8 @@ public class GestorUsuario {
     }
 
     public void consultarUsuario() {
-        for (Usuario usuario : usuarios) {
-            
+        for (int i = 0; i < cantidad; i++) {
+            System.out.println(usuarios[i].toString());
         }
     }
 }
