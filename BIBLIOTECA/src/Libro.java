@@ -3,6 +3,7 @@ public class Libro {
     private String autor;
     private Categoria categoria;
     private int isbn;
+    private boolean disponible;
 
     public Libro(String titulo, String autor, Categoria categoria, int isbn) {
         this.titulo = titulo;
