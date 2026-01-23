@@ -10,6 +10,15 @@ public class Libro {
         this.autor = autor;
         this.categoria = categoria;
         this.isbn = isbn;
+        disponible = true;
+    }
+
+    public void prestar() {
+        disponible = false;
+    }
+
+    public void devolver() {
+        disponible = true;
     }
 
     public String getTitulo() {
@@ -36,17 +45,16 @@ public class Libro {
         this.categoria = categoria;
     }
 
-
-
     public int getIsbn() {
         return isbn;
     }
-
-
 
     public void setIsbn(int isbn) {
         this.isbn = isbn;
     }
 
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
 
 }

@@ -2,11 +2,23 @@ public class Usuario {
     private boolean esAdmin;
     private String nombre;
     private String password;
+    private int prestamosActivos;
+
 
     public Usuario(String nombre, String password, boolean esAdmin) {
         this.nombre = nombre;
         this.password = password;
         this.esAdmin = esAdmin;
+    }
+
+    public void incrementarPrestamos() {
+        prestamosActivos++;
+    }
+
+    public void decrementarPrestamos() {
+        if (prestamosActivos > 0) {
+            prestamosActivos--;
+        }
     }
 
     public boolean isEsAdmin() {
