@@ -1,3 +1,5 @@
+// TODO: Poner aqui el login y una funcion donde haga Usuarios de prueba y Libros de Prueba
+
 public class GestorUsuario {
     private Usuario[] usuarios;
     private static final int MAX = 100;

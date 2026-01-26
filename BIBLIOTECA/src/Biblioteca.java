@@ -14,9 +14,11 @@ public class Biblioteca {
     public static final String BLANCO = "\u001B[37m";
     public static final String NEGRITA = "\u001B[1m";
 
-    public static Usuario[] usuarios = {
-            new Usuario("pepe", "12345", false),
-            new Usuario("maria", "54321", true)
+    //Esto hay que quitarlo
+    public static Usuario[] usuariosAdmin = {
+            new Usuario("pepe", "12345", true),
+            new Usuario("maria", "54321", false),
+            
     };
 
     public static void main(String[] args) {
@@ -51,7 +53,7 @@ public class Biblioteca {
 
         System.out.println(AZUL + NEGRITA + "|____________________________|" + RESET);
 
-        for (Usuario u : usuarios) {
+        for (Usuario u : usuariosAdmin) {
             if (u.getNombre().equals(nombre) && u.getPassword().equals(pass)) {
                 System.out.println(VERDE + "Login correcto! Bienvenido " + u.getNombre() + RESET);
                 return u;
@@ -84,6 +86,7 @@ public class Biblioteca {
 
             System.out.print(BLANCO + "\nSeleccione una opción: " + RESET);
             opci = sc.nextInt();
+            sc.nextLine();
 
             switch (opci) {
 
