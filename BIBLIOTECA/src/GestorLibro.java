@@ -1,6 +1,11 @@
 import java.util.Arrays;
 
 public class GestorLibro {
+
+    public static final String RESET = "\u001B[0m";
+    public static final String ROJO = "\u001B[31m";
+    public static final String VERDE = "\u001B[32m";
+
     private Libro[] libros;
     private static final int MAX = 100;
     private int cantidad;
@@ -11,13 +16,13 @@ public class GestorLibro {
     }
 
     public boolean agregarLibro(Libro libro) {
-        boolean respuesta = false; 
+        boolean respuesta = false;
         if (cantidad < MAX) {
             libros[cantidad] = libro;
             cantidad++;
             respuesta = true;
         }
-        
+
         return respuesta;
     }
 
@@ -31,7 +36,7 @@ public class GestorLibro {
         return null;
     }
 
-    private int buscarLibroISBN(int isbn) {
+    public int buscarLibroISBN(int isbn) {
         for (int i = 0; i < cantidad; i++) {
             if (libros[i].getIsbn() == isbn) {
                 return i;
@@ -73,9 +78,27 @@ public class GestorLibro {
             for (int i = posicion + 1; i < cantidad; i++) {
                 libros[i - 1] = libros[i];
             }
+            cantidad--;
             respuesta = true;
         }
 
         return respuesta;
     }
+
+    public Libro[] getLibros() {
+        return libros;
+    }
+
+    public void mostrarLibros() {
+        System.out.println("\n--- LISTA DE LIBROS ---");
+        if (cantidad == 0) {
+            System.out.println("No hay libros registrados.");
+            return;
+        }
+
+        for (int i = 0; i < cantidad; i++) {
+            System.out.println(libros[i]);
+        }
+    }
+
 }

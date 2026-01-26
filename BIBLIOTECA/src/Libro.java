@@ -1,4 +1,9 @@
 public class Libro {
+
+    public static final String RESET = "\u001B[0m";
+    public static final String ROJO = "\u001B[31m";
+    public static final String VERDE = "\u001B[32m";
+
     private String titulo;
     private String autor;
     private Categoria categoria;
@@ -19,6 +24,10 @@ public class Libro {
 
     public void devolver() {
         disponible = true;
+    }
+
+    public boolean isDisponible() {
+        return disponible;
     }
 
     public String getTitulo() {
@@ -57,4 +66,19 @@ public class Libro {
         this.disponible = disponible;
     }
 
+    @Override
+    public String toString() {
+        String estado;
+        if (disponible) {
+            estado = VERDE + "Disponible" + RESET;
+        } else {
+            estado = ROJO + "Prestado" + RESET;
+        }
+
+        return "Título: " + titulo +
+                " | Autor: " + autor +
+                " | ISBN: " + isbn +
+                " | Categoría: " + categoria +
+                " | Estado: " + estado;
+    }
 }

@@ -4,11 +4,11 @@ public class Usuario {
     private String password;
     private int prestamosActivos;
 
-
     public Usuario(String nombre, String password, boolean esAdmin) {
         this.nombre = nombre;
         this.password = password;
         this.esAdmin = esAdmin;
+        prestamosActivos = 0;
     }
 
     public void incrementarPrestamos() {
@@ -45,15 +45,13 @@ public class Usuario {
         this.password = password;
     }
 
-    @Override
-    public String toString() {
-        return "Usuario = " + esAdmin 
-        + ", El nombre es " + nombre ;
+    public int getPrestamosActivos() {
+        return prestamosActivos;
     }
 
-
-    
-
-
+    @Override
+    public String toString() {
+        return "Nombre: " + nombre + " || Admin: " + esAdmin;
+    }
 
 }
