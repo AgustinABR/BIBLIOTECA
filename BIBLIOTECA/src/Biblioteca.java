@@ -14,14 +14,10 @@ public class Biblioteca {
     public static final String BLANCO = "\u001B[37m";
     public static final String NEGRITA = "\u001B[1m";
 
-    //Esto hay que quitarlo
-    public static Usuario[] usuariosAdmin = {
-            new Usuario("pepe", "12345", true),
-            new Usuario("maria", "54321", false),
-            
-    };
-
     public static void main(String[] args) {
+
+        gb.cargarDatos();
+
         Usuario usuario = login();
 
         if (usuario != null) {
@@ -53,11 +49,11 @@ public class Biblioteca {
 
         System.out.println(AZUL + NEGRITA + "|____________________________|" + RESET);
 
-        for (Usuario u : usuariosAdmin) {
-            if (u.getNombre().equals(nombre) && u.getPassword().equals(pass)) {
-                System.out.println(VERDE + "Login correcto! Bienvenido " + u.getNombre() + RESET);
-                return u;
-            }
+        Usuario u = gb.getGestorUsuario().login(nombre, pass);
+
+        if (u != null) {
+            System.out.println(VERDE + "Login correcto! Bienvenido " + u.getNombre() + RESET);
+            return u;
         }
 
         System.out.println(ROJO + "Login incorrecto" + RESET);
@@ -81,6 +77,10 @@ public class Biblioteca {
             System.out.println(AZUL + "|" + CYAN + " 6. Libros prestados          " + AZUL + "|" + RESET);
             System.out.println(AZUL + "|" + MORADO + " 7. Prestar libros            " + AZUL + "|" + RESET);
             System.out.println(AZUL + "|" + AMARILLO + " 8. Devolver libros           " + AZUL + "|" + RESET);
+            System.out.println(AZUL + "|" + VERDE + " 9. Número de préstamos       " + AZUL + "|" + RESET);
+            System.out.println(AZUL + "|" + CYAN + " 10. Libros más prestados     " + AZUL + "|" + RESET);
+            System.out.println(
+                    AZUL + "|" + MORADO + " 11. U. con más préstamos ac. " + AZUL + "|" + RESET);
             System.out.println(AZUL + "|" + ROJO + " 0. Salir                     " + AZUL + "|" + RESET);
             System.out.println(AZUL + "|______________________________|" + RESET);
 
@@ -170,6 +170,18 @@ public class Biblioteca {
                     gb.devolverLibro(idDev, fechaDev);
                     break;
 
+                case 9:
+                    gb.mostrarNumeroPrestamos();
+                    break;
+
+                case 10:
+                    gb.mostrarLibrosMasPrestados();
+                    break;
+
+                case 11:
+                    gb.mostrarUsuarioConMasPrestamosActivos();
+                    break;
+
                 case 0:
                     System.out.println("Saliendo del menú admin...");
                     break;
@@ -190,10 +202,10 @@ public class Biblioteca {
                     "|        MENÚ USUARIO          |\n" +
                     "|______________________________|" + RESET);
 
-            System.out.println(MORADO + "|" + CYAN + " 1. Mostrar libros           " + MORADO + "|" + RESET);
-            System.out.println(MORADO + "|" + VERDE + " 2. Prestar libro            " + MORADO + "|" + RESET);
-            System.out.println(MORADO + "|" + AMARILLO + " 3. Devolver libro           " + MORADO + "|" + RESET);
-            System.out.println(MORADO + "|" + ROJO + " 0. Salir                    " + MORADO + "|" + RESET);
+            System.out.println(MORADO + "|" + CYAN + " 1. Mostrar libros            " + MORADO + "|" + RESET);
+            System.out.println(MORADO + "|" + VERDE + " 2. Prestar libro             " + MORADO + "|" + RESET);
+            System.out.println(MORADO + "|" + AMARILLO + " 3. Devolver libro            " + MORADO + "|" + RESET);
+            System.out.println(MORADO + "|" + ROJO + " 0. Salir                     " + MORADO + "|" + RESET);
             System.out.println(MORADO + "|______________________________|" + RESET);
 
             System.out.print(BLANCO + "\nSeleccione una opción: " + RESET);

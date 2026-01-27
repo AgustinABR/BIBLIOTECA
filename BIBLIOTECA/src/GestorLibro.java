@@ -10,6 +10,22 @@ public class GestorLibro {
     private static final int MAX = 100;
     private int cantidad;
 
+    public void cargarLibros() {
+        agregarLibro(new Libro("El Hobbit", "Tolkien", Categoria.FANTASIA, 111));
+        agregarLibro(new Libro("El Señor de los Anillos", "Tolkien", Categoria.FANTASIA, 112));
+        agregarLibro(new Libro("Harry Potter", "J.K. Rowling", Categoria.FANTASIA, 113));
+        agregarLibro(new Libro("1984", "Orwell", Categoria.CIENCIAFICCION, 221));
+        agregarLibro(new Libro("Dune", "Frank Herbert", Categoria.CIENCIAFICCION, 222));
+        agregarLibro(new Libro("Fahrenheit 451", "Ray Bradbury", Categoria.CIENCIAFICCION, 223));
+        agregarLibro(new Libro("It", "Stephen King", Categoria.TERROR, 331));
+        agregarLibro(new Libro("El Resplandor", "Stephen King", Categoria.TERROR, 332));
+        agregarLibro(new Libro("Drácula", "Bram Stoker", Categoria.TERROR, 333));
+        agregarLibro(new Libro("Los Juegos del Hambre", "Suzanne Collins", Categoria.ACCION, 441));
+        agregarLibro(new Libro("Divergente", "Veronica Roth", Categoria.ACCION, 442));
+        agregarLibro(new Libro("El Diario de Greg", "Jeff Kinney", Categoria.COMEDIA, 551));
+        agregarLibro(new Libro("Sin noticias de Gurb", "Eduardo Mendoza", Categoria.COMEDIA, 552));
+    }
+
     public GestorLibro() {
         libros = new Libro[MAX];
         cantidad = 0;
@@ -90,7 +106,7 @@ public class GestorLibro {
     }
 
     public void mostrarLibros() {
-        System.out.println("\n--- LISTA DE LIBROS ---");
+        System.out.println("\n LISTA DE LIBROS ");
         if (cantidad == 0) {
             System.out.println("No hay libros registrados.");
             return;

@@ -6,7 +6,8 @@ public class Prestamo {
     private String fechaDevolucion;
     private boolean activo;
 
-    public Prestamo(boolean activo, String fechaDevolucion, String fechaPrestamo, int idPrestamo, Libro libro, Usuario usuario) {
+    public Prestamo(boolean activo, String fechaDevolucion, String fechaPrestamo, int idPrestamo, Libro libro,
+            Usuario usuario) {
         this.activo = activo;
         this.fechaDevolucion = fechaDevolucion;
         this.fechaPrestamo = fechaPrestamo;
@@ -14,8 +15,6 @@ public class Prestamo {
         this.libro = libro;
         this.usuario = usuario;
     }
-
-
 
     public int getIdPrestamo() {
         return idPrestamo;

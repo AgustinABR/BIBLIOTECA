@@ -18,6 +18,11 @@ public class GestorBiblioteca {
         return gestorUsuario;
     }
 
+    public void cargarDatos() {
+        gestorUsuario.cargarUsuarios();
+        gestorLibro.cargarLibros();
+    }
+
     // LIBROS
 
     public boolean agregarLibro(String titulo, String autor, Categoria categoria, int isbn) {
@@ -81,6 +86,18 @@ public class GestorBiblioteca {
 
     public void mostrarLibros() {
         gestorLibro.mostrarLibros();
+    }
+
+    public void mostrarNumeroPrestamos() {
+        gestorPrestamo.mostrarNumeroPrestamos();
+    }
+
+    public void mostrarLibrosMasPrestados() {
+        gestorPrestamo.mostrarLibrosMasPrestados();
+    }
+
+    public void mostrarUsuarioConMasPrestamosActivos() {
+        gestorPrestamo.mostrarUsuarioConMasPrestamosActivos();
     }
 
 }
