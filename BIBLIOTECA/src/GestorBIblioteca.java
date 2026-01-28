@@ -21,9 +21,8 @@ public class GestorBiblioteca {
     public void cargarDatos() {
         gestorUsuario.cargarUsuarios();
         gestorLibro.cargarLibros();
+        cargarPrestamos();
     }
-
-    // LIBROS
 
     public boolean agregarLibro(String titulo, String autor, Categoria categoria, int isbn) {
         Libro libro = new Libro(titulo, autor, categoria, isbn);
@@ -38,8 +37,6 @@ public class GestorBiblioteca {
         return gestorLibro.eliminarLibro(isbn);
     }
 
-    // USUARIOS
-
     public boolean registrarUsuario(String nombre, String password, boolean esAdmin) {
         Usuario usuario = new Usuario(nombre, password, esAdmin);
         return gestorUsuario.registrarUsuario(usuario);
@@ -48,8 +45,6 @@ public class GestorBiblioteca {
     public void mostrarUsuarios() {
         gestorUsuario.consultarUsuario();
     }
-
-    // PRÉSTAMOS
 
     public boolean prestarLibro(int idPrestamo, Libro libro, Usuario usuario, String fechaPrestamo) {
 
@@ -98,6 +93,26 @@ public class GestorBiblioteca {
 
     public void mostrarUsuarioConMasPrestamosActivos() {
         gestorPrestamo.mostrarUsuarioConMasPrestamosActivos();
+    }
+
+    public void cargarPrestamos() {
+        Usuario pepe = gestorUsuario.buscarUsuarioPorNombre("pepe");
+        Usuario maria = gestorUsuario.buscarUsuarioPorNombre("maria");
+        Usuario juan = gestorUsuario.buscarUsuarioPorNombre("juan");
+        Usuario marta = gestorUsuario.buscarUsuarioPorNombre("marta");
+
+        Libro hobbit = gestorLibro.getLibros()[gestorLibro.buscarLibroISBN(111)];
+        Libro dune = gestorLibro.getLibros()[gestorLibro.buscarLibroISBN(222)];
+        Libro it = gestorLibro.getLibros()[gestorLibro.buscarLibroISBN(331)];
+        Libro juegosHambre = gestorLibro.getLibros()[gestorLibro.buscarLibroISBN(441)];
+
+        prestarLibro(1, hobbit, pepe, "01/10/2025");
+        prestarLibro(2, dune, maria, "05/10/2025");
+
+        prestarLibro(3, it, juan, "10/09/2025");
+        devolverLibro(3, "25/09/2025");
+
+        prestarLibro(4, juegosHambre, marta, "02/10/2025");
     }
 
 }

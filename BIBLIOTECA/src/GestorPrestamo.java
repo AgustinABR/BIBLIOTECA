@@ -115,5 +115,6 @@ public class GestorPrestamo {
             System.out.println("No hay préstamos activos.");
         }
     }
+    
 
 }
